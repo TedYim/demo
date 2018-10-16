@@ -1,4 +1,4 @@
-package com.example.demo.cache.guava.entity;
+package com.example.demo.cache.entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

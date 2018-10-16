@@ -1,7 +1,10 @@
-package com.example.demo.designpatterns;
+package com.example.demo.design_patterns;
 
 import java.io.*;
 
+/**
+ * 设计模式:原型模式
+ */
 public class Prototype implements Cloneable, Serializable {
 
     private static final long serialVersionUID = 1L;

@@ -16,7 +16,7 @@ import org.apache.curator.retry.ExponentialBackoffRetry;
 /**
  * 测试Curator事件监听
  */
-public class CarutorDemo {
+public class CarutorWatcherDemo {
 
     public static void main(String[] args) throws Exception {
         CuratorFramework client = CuratorFrameworkFactory.builder()

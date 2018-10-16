@@ -1,6 +1,7 @@
-package com.example.demo.cache.guava.service;
+package com.example.demo.cache.service;
 
-import com.example.demo.cache.guava.entity.Student;
+
+import com.example.demo.cache.entity.Student;
 
 public interface StudentService {
 

@@ -1,6 +1,6 @@
-package com.example.demo.cache.guava.test;
+package com.example.demo.cache.test;
 
-import com.example.demo.cache.guava.entity.Employee;
+import com.example.demo.cache.entity.Employee;
 import com.google.common.cache.CacheBuilder;
 import com.google.common.cache.CacheLoader;
 import com.google.common.cache.LoadingCache;

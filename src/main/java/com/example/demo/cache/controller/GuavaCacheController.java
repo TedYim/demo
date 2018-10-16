@@ -1,7 +1,7 @@
-package com.example.demo.cache.guava.controller;
+package com.example.demo.cache.controller;
 
-import com.example.demo.cache.guava.entity.Student;
-import com.example.demo.cache.guava.service.StudentService;
+import com.example.demo.cache.entity.Student;
+import com.example.demo.cache.service.StudentService;
 import org.redisson.spring.cache.RedissonCache;
 import org.redisson.spring.cache.RedissonCacheStatisticsProvider;
 import org.springframework.beans.factory.annotation.Autowired;

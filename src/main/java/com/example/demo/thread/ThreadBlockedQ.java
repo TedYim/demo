@@ -3,7 +3,7 @@ package com.example.demo.thread;
 /**
  * Created by Ted on 2018/9/11.
  */
-public class TheadBlockedQ {
+public class ThreadBlockedQ {
     public static void main(String[] args) throws InterruptedException {
         ThreadExcutor excutor = new ThreadExcutor(3);
         for (int i = 0; i < 10; i++) {

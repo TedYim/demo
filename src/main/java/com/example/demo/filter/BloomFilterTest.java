@@ -3,11 +3,13 @@ package com.example.demo.filter;
 import com.google.common.hash.BloomFilter;
 import com.google.common.hash.Funnels;
 
-
+/**
+ * 布隆过滤器
+ */
 public class BloomFilterTest {
 
     private static final int capacity = 1000000;
-    private static final int key = 999998;
+    private static final int key      = 999998;
 
     private static BloomFilter<Integer> bloomFilter = BloomFilter.create(Funnels.integerFunnel(), capacity);
 

@@ -1,4 +1,4 @@
-package com.example.demo.consistenthash.demo;
+package com.example.demo.consistent_hash.demo;
 
 import java.util.LinkedList;
 import java.util.List;

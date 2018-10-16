@@ -15,8 +15,7 @@ import kafka.utils.ZkUtils;
 import scala.collection.Seq;
 
 /**
- * @Title KafkaUtils.java
- * @Description 操作 Kafka Topic 的工具类
+ * 操作 Kafka Topic 以及对 Kafka 监听的工具类
  */
 public class KafkaUtils {
 
