@@ -1,3 +1,4 @@
+/*
 package com.example.demo.elasticsearch.search.service.impl;
 
 import cn.exrick.common.exception.XmallException;
@@ -42,13 +43,15 @@ public class SearchServiceImpl implements SearchService {
 	@Value("${ITEM_TYPE}")
 	private String ITEM_TYPE;
 
-	/**
+	*/
+/**
 	 * 使用QueryBuilder
 	 * termQuery("key", obj) 完全匹配
 	 * termsQuery("key", obj1, obj2..)   一次匹配多个值
 	 * matchQuery("key", Obj) 单个匹配, field不支持通配符, 前缀具高级特性
 	 * multiMatchQuery("text", "field1", "field2"..);  匹配多个字段, field有通配符忒行
-	 */
+	 *//*
+
 	@Override
 	public SearchResult search(String key, int page, int size,String sort,int priceGt,int priceLte) {
 
@@ -169,3 +172,4 @@ public class SearchServiceImpl implements SearchService {
 		}
 	}
 }
+*/

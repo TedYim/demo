@@ -25,7 +25,7 @@ public class ReceiverConfig1 {
 
     @Bean
     public Map<String, Object> consumerConfigs1() {
-        Map<String, Object> props = new HashMap<>();
+        Map<String, Object> props = new HashMap<String, Object>();
         // list of host:port pairs used for establishing the initial connections to the Kakfa cluster
         props.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, bootstrapServers);
         props.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class);
@@ -38,12 +38,12 @@ public class ReceiverConfig1 {
 
     @Bean
     public ConsumerFactory<String, String> consumerFactory1() {
-        return new DefaultKafkaConsumerFactory<>(consumerConfigs1());
+        return new DefaultKafkaConsumerFactory<String, String>(consumerConfigs1());
     }
 
     @Bean(name = "kafkaListenerContainerFactory1")
     public KafkaListenerContainerFactory<ConcurrentMessageListenerContainer<String, String>> kafkaListenerContainerFactory1() {
-        ConcurrentKafkaListenerContainerFactory<String, String> factory = new ConcurrentKafkaListenerContainerFactory<>();
+        ConcurrentKafkaListenerContainerFactory<String, String> factory = new ConcurrentKafkaListenerContainerFactory<String, String>();
         factory.setConsumerFactory(consumerFactory1());
         return factory;
     }

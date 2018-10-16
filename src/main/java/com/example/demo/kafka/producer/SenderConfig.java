@@ -25,18 +25,17 @@ public class SenderConfig {
     props.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, bootstrapServers);
     props.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, StringSerializer.class);
     props.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, StringSerializer.class);
-
     return props;
   }
 
   @Bean
   public ProducerFactory<String, String> producerFactory() {
-    return new DefaultKafkaProducerFactory<>(producerConfigs());
+    return new DefaultKafkaProducerFactory<String, String>(producerConfigs());
   }
 
   @Bean
   public KafkaTemplate<String, String> kafkaTemplate() {
-    return new KafkaTemplate<>(producerFactory());
+    return new KafkaTemplate<String, String>(producerFactory());
   }
 
   @Bean

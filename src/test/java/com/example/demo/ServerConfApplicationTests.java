@@ -14,7 +14,7 @@ import java.util.Date;
 @RunWith(SpringRunner.class)
 @SpringBootTest
 @EnableScheduling
-public class DemoConfigurationApplicationTests {
+public class ServerConfApplicationTests {
 
     @Autowired
     private Sender sender;
@@ -30,6 +30,12 @@ public class DemoConfigurationApplicationTests {
     private void sendMsg() {
         sender.send("helloworld", "testValue- [ " + new Date() + " ]");
         System.out.println("发送的数据为 testValue- [ " + new Date() + " ]");
+    }
+
+    @Test
+    public void testStatic() throws Exception {
+        AccessLogTask.init();
+        AccessLogTask.addAccessLog("123456");
     }
 
 }

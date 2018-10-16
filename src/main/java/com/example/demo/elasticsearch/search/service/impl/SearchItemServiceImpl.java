@@ -1,3 +1,4 @@
+/*
 package com.example.demo.elasticsearch.search.service.impl;
 
 import cn.exrick.common.exception.XmallException;
@@ -127,3 +128,4 @@ public class SearchItemServiceImpl implements SearchItemService {
 		return esInfo;
 	}
 }
+*/

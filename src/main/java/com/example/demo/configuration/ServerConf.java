@@ -6,11 +6,10 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
-public class DemoConfiguration {
+public class ServerConf {
 
     /**
      * HTTP2作为新的HTTP标准，目前在Undertow上已经可以被很好地支持了，而在代码中只需要配置下，就可以启用HTTP2作为web的协议：
-     * @return
      */
     @Bean
     public UndertowEmbeddedServletContainerFactory embeddedServletContainerFactory() {
