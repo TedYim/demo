@@ -1,4 +1,4 @@
-package com.example.demo.kafka.consumer;
+package com.example.demo.kafka.demo.consumer;
 
 import com.alibaba.druid.support.json.JSONUtils;
 import org.apache.kafka.clients.consumer.ConsumerRecord;

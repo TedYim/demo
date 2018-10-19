@@ -1,4 +1,4 @@
-package com.example.demo.kafka.producer;
+package com.example.demo.kafka.demo.producer;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

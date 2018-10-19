@@ -1,4 +1,4 @@
-package com.example.demo.kafka.consumer;
+package com.example.demo.kafka.demo.consumer;
 
 import org.apache.kafka.clients.consumer.ConsumerConfig;
 import org.apache.kafka.common.serialization.StringDeserializer;
@@ -17,64 +17,40 @@ import java.util.Map;
 
 @Configuration
 @EnableKafka
-public class ReceiverConfig2 {
+public class ReceiverConfig1 {
 
     @Value("${kafka.bootstrap-servers}")
     private String bootstrapServers;
 
     @Bean
-    public Map<String, Object> consumerConfigs2() {
+    public Map<String, Object> consumerConfigs1() {
         Map<String, Object> props = new HashMap<String, Object>();
         // list of host:port pairs used for establishing the initial connections to the Kakfa cluster
         props.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, bootstrapServers);
         props.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class);
         props.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class);
         // allows a pool of processes to divide the work of consuming and processing records
-        props.put(ConsumerConfig.GROUP_ID_CONFIG, "2");
+        props.put(ConsumerConfig.GROUP_ID_CONFIG, "1");
 
         return props;
     }
 
     @Bean
-    public ConsumerFactory<String, String> consumerFactory2() {
-        return new DefaultKafkaConsumerFactory<String, String>(consumerConfigs2());
+    public ConsumerFactory<String, String> consumerFactory1() {
+        return new DefaultKafkaConsumerFactory<String, String>(consumerConfigs1());
     }
 
-    @Bean(name = "kafkaListenerContainerFactory2")
-    public KafkaListenerContainerFactory<ConcurrentMessageListenerContainer<String, String>> kafkaListenerContainerFactory2() {
+    @Bean(name = "kafkaListenerContainerFactory1")
+    public KafkaListenerContainerFactory<ConcurrentMessageListenerContainer<String, String>> kafkaListenerContainerFactory1() {
         ConcurrentKafkaListenerContainerFactory<String, String> factory = new ConcurrentKafkaListenerContainerFactory<String, String>();
-        factory.setConsumerFactory(consumerFactory2());
+        factory.setConsumerFactory(consumerFactory1());
         return factory;
     }
 
     @Bean
-    public KafkaListenerContainerFactory<ConcurrentMessageListenerContainer<String, String>> kafkaListenerContainerFactory() {
-        ConcurrentKafkaListenerContainerFactory<String, String> factory = new ConcurrentKafkaListenerContainerFactory<String, String>();
-        factory.setConsumerFactory(consumerFactory2());
-        return factory;
+    public Receiver receiver() {
+        return new Receiver();
     }
 
-    /**
-     * topic的消费者组1监听
-     *
-     * @return
-     */
-//    @Bean
-//    public Group1Listener listener1() {
-//        return new Group1Listener();
-//    }
 
-    /**
-     * topic的消费者组2监听
-     *
-     * @return
-     */
-//    @Bean
-//    public Group2Listener listener2() {
-//        return new Group2Listener();
-//    }
-    @Bean
-    public Receiver2 receiver2() {
-        return new Receiver2();
-    }
 }

@@ -1,10 +1,8 @@
-package com.example.demo.kafka.consumer;
+package com.example.demo.kafka.demo.consumer;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.kafka.annotation.KafkaListener;
-
-import java.util.concurrent.CountDownLatch;
 
 public class Receiver {
 
