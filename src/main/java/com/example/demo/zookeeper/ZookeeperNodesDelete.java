@@ -1,4 +1,4 @@
-package com.example.demo.zk;
+package com.example.demo.zookeeper;
 
 import org.apache.zookeeper.KeeperException;
 import org.apache.zookeeper.WatchedEvent;

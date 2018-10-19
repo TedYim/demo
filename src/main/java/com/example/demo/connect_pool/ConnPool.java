@@ -1,4 +1,4 @@
-package com.example.demo.connpool;
+package com.example.demo.connect_pool;
 
 import java.io.IOException;
 import java.io.InputStream;
