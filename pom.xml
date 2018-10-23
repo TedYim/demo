@@ -74,6 +74,7 @@
             <artifactId>druid</artifactId>
             <version>1.0.15</version>
         </dependency>
+
         <dependency>
             <groupId>io.shardingjdbc</groupId>
             <artifactId>sharding-jdbc-core</artifactId>
@@ -841,8 +842,8 @@
     <repositories>
         <repository>
             <id>nexus</id>
-            <!--<name>Topscore Nexus Repository</name>-->
-            <!--<url>http://123.56.19.22:8081/nexus/content/groups/public</url>-->
+            <name>Topscore Nexus Repository</name>
+            <url>http://123.56.19.22:8081/nexus/content/groups/public</url>
             <releases>
                 <enabled>true</enabled>
             </releases>
@@ -854,8 +855,8 @@
     <pluginRepositories>
         <pluginRepository>
             <id>nexus</id>
-            <!--<name>Topscore Nexus Repository</name>-->
-            <!--<url>http://123.56.19.22:8081/nexus/content/groups/public</url>-->
+            <name>Topscore Nexus Repository</name>
+            <url>http://123.56.19.22:8081/nexus/content/groups/public</url>
             <releases>
                 <enabled>true</enabled>
             </releases>

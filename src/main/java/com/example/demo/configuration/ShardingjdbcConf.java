@@ -2,6 +2,7 @@ package com.example.demo.configuration;
 
 import com.alibaba.druid.pool.DruidDataSource;
 import com.example.demo.shardingjdbc.MyPreciseShardingAlgorithm;
+import com.github.pagehelper.PageHelper;
 import io.shardingjdbc.core.api.ShardingDataSourceFactory;
 import io.shardingjdbc.core.api.config.ShardingRuleConfiguration;
 import io.shardingjdbc.core.api.config.TableRuleConfiguration;
@@ -79,6 +80,7 @@ public class ShardingjdbcConf {
     /**
      * Sharding-JDBC采用snowflake算法作为默认的分布式分布式自增主键策略，用于保证分布式的情况下可以无中心化的生成不重复的自增序列。
      * 因此自增主键可以保证递增，但无法保证连续。而snowflake算法的最后4位是在同一毫秒内的访问递增值。因此，如果毫秒内并发度不高，最后4位为零的几率则很大。因此并发度不高的应用生成偶数主键的几率会更高。
+     *
      * @return
      * @throws SQLException
      */
@@ -104,8 +106,24 @@ public class ShardingjdbcConf {
         sqlSessionFactoryBean.setDataSource(getShardingDataSource());
         PathMatchingResourcePatternResolver resolver = new PathMatchingResourcePatternResolver();
         sqlSessionFactoryBean.setMapperLocations(resolver.getResources("classpath:/mapper/*.xml"));
-        //sqlSessionFactoryBean.setPlugins(new Interceptor[1]());
+
+        sqlSessionFactoryBean.setPlugins(getInterceptor());
         return sqlSessionFactoryBean.getObject();
+    }
+
+    @Bean
+    public Interceptor[] getInterceptor() {
+        Interceptor interceptor = new PageHelper();
+        Properties props = new Properties();
+        props.setProperty("dialect", "mysql");
+        props.setProperty("offsetAsPageNum", "false");
+        props.setProperty("pageSizeZero", "true");
+        props.setProperty("reasonable", "false");
+        props.setProperty("supportMethodsArguments", "false");
+        props.setProperty("returnPageInfo", "none");
+        interceptor.setProperties(props);
+        Interceptor[] interceptors = {interceptor};
+        return interceptors;
     }
 
     @Bean
