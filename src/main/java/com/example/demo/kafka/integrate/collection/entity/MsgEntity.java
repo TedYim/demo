@@ -1,57 +1,60 @@
 package com.example.demo.kafka.integrate.collection.entity;
 
-import com.topscore.integrate.annotation.ORMHBaseColumn;
-import com.topscore.integrate.annotation.ORMHBaseTable;
+import com.example.demo.kafka.integrate.collection.annotation.ORMHBaseColumn;
+import com.example.demo.kafka.integrate.collection.annotation.ORMHBaseTable;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
+import static com.example.demo.kafka.integrate.collection.entity.MsgEntityStatus.family;
+import static com.example.demo.kafka.integrate.collection.entity.MsgEntityStatus.tableName;
+
 @EqualsAndHashCode(callSuper = false)
 @Data
-@ORMHBaseTable(tableName = com.topscore.integrate.entity.MsgEntityStatus.tableName)
-public class MsgEntity extends com.topscore.integrate.entity.BaseEntity {
+@ORMHBaseTable(tableName = tableName)
+public class MsgEntity extends BaseEntity {
 
     /***
      * 内容
      */
-    @ORMHBaseColumn(family = com.topscore.integrate.entity.MsgEntityStatus.family, qualifier = "cont")
+    @ORMHBaseColumn(family = family, qualifier = "cont")
     private String content;
   
-    @ORMHBaseColumn(family = com.topscore.integrate.entity.MsgEntityStatus.family, qualifier = "ct")
+    @ORMHBaseColumn(family = family, qualifier = "ct")
     private Long createTime;
      
     /**
      * 创建时间
      */
-    @ORMHBaseColumn(family = com.topscore.integrate.entity.MsgEntityStatus.family, qualifier = "ut")
+    @ORMHBaseColumn(family = family, qualifier = "ut")
     private Long updateTime;
     
-    @ORMHBaseColumn(family = com.topscore.integrate.entity.MsgEntityStatus.family, qualifier = "rrt")
+    @ORMHBaseColumn(family =  family, qualifier = "rrt")
     private Long receiveRequestTime;
    
-    @ORMHBaseColumn(family = com.topscore.integrate.entity.MsgEntityStatus.family, qualifier = "rrt1")
+    @ORMHBaseColumn(family =  family, qualifier = "rrt1")
     private  Long receiveRecordTime=0L;
  
-    @ORMHBaseColumn(family = com.topscore.integrate.entity.MsgEntityStatus.family, qualifier = "srt")
+    @ORMHBaseColumn(family =  family, qualifier = "srt")
     private Long sendRequestTime;
    
-    @ORMHBaseColumn(family = com.topscore.integrate.entity.MsgEntityStatus.family, qualifier = "srt1")
+    @ORMHBaseColumn(family =  family, qualifier = "srt1")
     private  Long sendRecordTime=0L;
    
-    @ORMHBaseColumn(family = com.topscore.integrate.entity.MsgEntityStatus.family, qualifier = "s")
+    @ORMHBaseColumn(family =  family, qualifier = "s")
     private String send;
  
-    @ORMHBaseColumn(family = com.topscore.integrate.entity.MsgEntityStatus.family, qualifier = "r")
+    @ORMHBaseColumn(family =  family, qualifier = "r")
     private String receive;
     
     
-    @ORMHBaseColumn(family = com.topscore.integrate.entity.MsgEntityStatus.family, qualifier = "sip")
+    @ORMHBaseColumn(family =  family, qualifier = "sip")
     private String sendIp;
     
-    @ORMHBaseColumn(family = com.topscore.integrate.entity.MsgEntityStatus.family, qualifier = "rip")
+    @ORMHBaseColumn(family =  family, qualifier = "rip")
     private String receiveIp;
-    @ORMHBaseColumn(family = com.topscore.integrate.entity.MsgEntityStatus.family, qualifier = "kw")
+    @ORMHBaseColumn(family =  family, qualifier = "kw")
     String keyword="";
-    @ORMHBaseColumn(family = com.topscore.integrate.entity.MsgEntityStatus.family, qualifier = "kw2")
+    @ORMHBaseColumn(family =  family, qualifier = "kw2")
     String keyword2="";
 }

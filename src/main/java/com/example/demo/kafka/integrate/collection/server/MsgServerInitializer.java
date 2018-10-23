@@ -1,8 +1,8 @@
 package com.example.demo.kafka.integrate.collection.server;
 
 
-import com.topscore.integrate.kafka.log.LogConstant;
 
+import com.example.demo.kafka.integrate.collection.kafka.log.LogConstant;
 import io.netty.buffer.ByteBuf;
 import io.netty.buffer.Unpooled;
 import io.netty.channel.ChannelInitializer;

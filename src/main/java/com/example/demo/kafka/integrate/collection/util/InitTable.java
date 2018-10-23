@@ -1,10 +1,9 @@
 package com.example.demo.kafka.integrate.collection.util;
 
-import java.io.IOException;
+import com.example.demo.kafka.integrate.collection.entity.MsgEntityStatus;
+import com.example.demo.kafka.integrate.collection.hbase.HBaseConnectionPool;
 
-import com.example.demo.kafka.integrate.collection.util.HBaseHelper;
-import com.topscore.integrate.entity.MsgEntityStatus;
-import com.topscore.integrate.hbase.HBaseConnectionPool;
+import java.io.IOException;
 
 public class InitTable {
 	static{

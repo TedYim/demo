@@ -1,7 +1,7 @@
 package com.example.demo.kafka.integrate.collection.dao.impl;
 
-import com.topscore.integrate.dao.MsgDao;
-import com.topscore.integrate.entity.MsgEntity;
+import com.example.demo.kafka.integrate.collection.dao.MsgDao;
+import com.example.demo.kafka.integrate.collection.entity.MsgEntity;
 
 public class MsgDaoImpl extends BaseDaoImpl implements MsgDao {
 

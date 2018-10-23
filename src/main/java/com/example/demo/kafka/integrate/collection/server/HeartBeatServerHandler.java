@@ -1,5 +1,9 @@
 package com.example.demo.kafka.integrate.collection.server;
 
+import com.example.demo.kafka.integrate.collection.kafka.log.LogConstant;
+import com.example.demo.kafka.integrate.collection.netty.Header;
+import com.example.demo.kafka.integrate.collection.netty.MessageType;
+import com.example.demo.kafka.integrate.collection.netty.NettyMessage;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.ChannelInboundHandlerAdapter;
 
@@ -7,10 +11,6 @@ import org.apache.htrace.fasterxml.jackson.databind.ObjectMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.topscore.integrate.kafka.log.LogConstant;
-import com.topscore.integrate.netty.Header;
-import com.topscore.integrate.netty.MessageType;
-import com.topscore.integrate.netty.NettyMessage;
 
 public class HeartBeatServerHandler extends ChannelInboundHandlerAdapter  {
 	
@@ -27,7 +27,7 @@ public class HeartBeatServerHandler extends ChannelInboundHandlerAdapter  {
 		// 返回心跳应答消息
 		if (header.getType() == MessageType.HEARTBEAT_REQ.value()) {
 		    NettyMessage heartBeat = buildHeatBeat();
-		    ctx.writeAndFlush(mapper.writeValueAsString(heartBeat)+LogConstant.segmentation);
+		    ctx.writeAndFlush(mapper.writeValueAsString(heartBeat)+ LogConstant.segmentation);
 		} else{
 			ctx.fireChannelRead(message);
 		}

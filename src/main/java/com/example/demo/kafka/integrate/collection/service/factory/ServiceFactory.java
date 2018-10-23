@@ -1,7 +1,7 @@
 package com.example.demo.kafka.integrate.collection.service.factory;
 
-import com.topscore.integrate.service.MsgService;
-import com.topscore.integrate.service.impl.MsgServiceImpl;
+import com.example.demo.kafka.integrate.collection.service.MsgService;
+import com.example.demo.kafka.integrate.collection.service.impl.MsgServiceImpl;
 
 public class ServiceFactory {
 	public static MsgService buildMsgService() {

@@ -1,27 +1,27 @@
 package com.example.demo.kafka.integrate.collection.service.impl;
 
+import com.example.demo.kafka.integrate.collection.dao.proxy.DaoProxyFactory;
+import com.example.demo.kafka.integrate.collection.entity.MsgEntity;
+import com.example.demo.kafka.integrate.collection.entity.MsgEntityStatus;
+import com.example.demo.kafka.integrate.collection.kafka.log.LogModel;
+import com.example.demo.kafka.integrate.collection.kafka.log.MsgTypeEnum;
+import com.example.demo.kafka.integrate.collection.service.MsgService;
+import com.example.demo.kafka.integrate.collection.util.DateUtil;
 import org.apache.commons.lang3.StringUtils;
 
-import com.topscore.integrate.dao.proxy.DaoProxyFactory;
-import com.topscore.integrate.entity.MsgEntity;
-import com.topscore.integrate.entity.MsgEntityStatus;
-import com.topscore.integrate.kafka.log.LogModel;
-import com.topscore.integrate.kafka.log.MsgTypeEnum;
-import com.topscore.integrate.service.MsgService;
-import com.topscore.integrate.util.DateUtil;
 
 /**
  * Created by lkl on 2017/12/8.
  */
 
-public class MsgServiceImpl implements MsgService{
+public class MsgServiceImpl implements MsgService {
     @Override
     public void saveMsg(LogModel logModel) {
     	
     	MsgEntity msgEntity=new MsgEntity();
     	
-    	String segment=MsgEntityStatus.SEGMENT;
-    	String time=DateUtil.convert2String(logModel.getRecordTime(),DateUtil.SHORT_DAY_FORMAT);
+    	String segment= MsgEntityStatus.SEGMENT;
+    	String time=DateUtil.convert2String(logModel.getRecordTime(), DateUtil.SHORT_DAY_FORMAT);
     	String id=logModel.getTopic()+segment+time+segment+logModel.getMessageId();
     	msgEntity.setId(id);
         MsgEntity entity = DaoProxyFactory.buildMsgDao().getByRowKey(msgEntity.getId());

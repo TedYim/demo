@@ -24,7 +24,7 @@ public class MsgServer {
             ServerBootstrap b = new ServerBootstrap(); 
             b.group(bossGroup, workerGroup)
              .channel(NioServerSocketChannel.class) 
-             .childHandler(new com.topscore.integrate.server.MsgServerInitializer())
+             .childHandler(new MsgServerInitializer())
              .option(ChannelOption.SO_BACKLOG, 128)
              .childOption(ChannelOption.SO_KEEPALIVE, true);
     		System.out.println("msg Server 启动了");

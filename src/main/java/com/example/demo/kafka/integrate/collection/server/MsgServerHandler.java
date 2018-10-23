@@ -1,5 +1,12 @@
 package com.example.demo.kafka.integrate.collection.server;
 
+import com.example.demo.kafka.integrate.collection.kafka.log.LogConstant;
+import com.example.demo.kafka.integrate.collection.kafka.log.LogModel;
+import com.example.demo.kafka.integrate.collection.netty.Header;
+import com.example.demo.kafka.integrate.collection.netty.MessageType;
+import com.example.demo.kafka.integrate.collection.netty.NettyMessage;
+import com.example.demo.kafka.integrate.collection.service.MsgService;
+import com.example.demo.kafka.integrate.collection.service.factory.ServiceFactory;
 import io.netty.channel.Channel;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.ChannelInboundHandlerAdapter;
@@ -11,13 +18,6 @@ import org.apache.htrace.fasterxml.jackson.databind.ObjectMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.topscore.integrate.kafka.log.LogConstant;
-import com.topscore.integrate.kafka.log.LogModel;
-import com.topscore.integrate.netty.Header;
-import com.topscore.integrate.netty.MessageType;
-import com.topscore.integrate.netty.NettyMessage;
-import com.topscore.integrate.service.MsgService;
-import com.topscore.integrate.service.factory.ServiceFactory;
 
 public class MsgServerHandler extends ChannelInboundHandlerAdapter{ 
 	
@@ -26,7 +26,7 @@ public class MsgServerHandler extends ChannelInboundHandlerAdapter{
 	MsgService msgService;
 	
 	public MsgServerHandler() {
-		msgService=ServiceFactory.buildMsgService();
+		msgService= ServiceFactory.buildMsgService();
 	}
     @Override
 	public void channelRead(ChannelHandlerContext ctx, Object msg) throws Exception { 
@@ -43,7 +43,7 @@ public class MsgServerHandler extends ChannelInboundHandlerAdapter{
     	NettyMessage nettyMessage=buildMsgMessage(attributeMap);
     	String response=mapper.writeValueAsString(nettyMessage);
 		Channel incoming = ctx.channel();
-        incoming.writeAndFlush(response+LogConstant.delimiter);
+        incoming.writeAndFlush(response+ LogConstant.delimiter);
         incoming.flush();
         logger.info((++count)+"response....."+ response);
         

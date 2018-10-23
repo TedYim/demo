@@ -2,9 +2,8 @@ package com.example.demo.kafka.integrate.collection.dao.proxy;
 
 import java.lang.reflect.Proxy;
 
-import com.example.demo.kafka.integrate.collection.dao.proxy.DaoProxy;
-import com.topscore.integrate.dao.MsgDao;
-import com.topscore.integrate.dao.impl.MsgDaoImpl;
+import com.example.demo.kafka.integrate.collection.dao.MsgDao;
+import com.example.demo.kafka.integrate.collection.dao.impl.MsgDaoImpl;
 
 public class DaoProxyFactory {
 

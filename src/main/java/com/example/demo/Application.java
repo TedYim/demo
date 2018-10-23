@@ -2,6 +2,7 @@ package com.example.demo;
 
 import com.example.demo.configuration.ServerConf;
 import com.google.common.cache.CacheBuilder;
+import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cache.CacheManager;
@@ -19,7 +20,7 @@ import java.util.concurrent.TimeUnit;
 @EnableAspectJAutoProxy(proxyTargetClass = true, exposeProxy = true)
 @EnableTransactionManagement
 @ComponentScan(basePackages = {"com.example.demo"})
-//@MapperScan(basePackages = "com.topscore.uke.*.mapper")
+@MapperScan(basePackages = "com.example.demo.mapper")
 @Import(value = {ServerConf.class})
 @ImportResource(locations = {"classpath:spring/spring-threadpool.xml"})
 @SpringBootApplication

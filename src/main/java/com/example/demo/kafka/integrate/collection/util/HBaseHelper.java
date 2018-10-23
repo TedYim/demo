@@ -2,13 +2,13 @@ package com.example.demo.kafka.integrate.collection.util;
 
 import java.io.IOException;
 
+import com.example.demo.kafka.integrate.collection.hbase.HBaseConnectionPool;
 import org.apache.hadoop.hbase.HColumnDescriptor;
 import org.apache.hadoop.hbase.HTableDescriptor;
 import org.apache.hadoop.hbase.TableName;
 import org.apache.hadoop.hbase.client.Admin;
 import org.apache.hadoop.hbase.client.Connection;
 
-import com.topscore.integrate.hbase.HBaseConnectionPool;
 
 
 public final class HBaseHelper {
