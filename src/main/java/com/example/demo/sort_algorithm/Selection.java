@@ -1,4 +1,4 @@
-package com.example.demo.sort;
+package com.example.demo.sort_algorithm;
 
 /**
  * 选择排序

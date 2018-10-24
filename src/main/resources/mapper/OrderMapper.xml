@@ -1,17 +1,25 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.example.demo.mapper.OrderMapper">
-    <resultMap id="BaseResultMap" type="com.example.demo.entity.Order">
+<mapper namespace="com.example.demo.shardingjdbc.mapper.OrderMapper">
+    <resultMap id="BaseResultMap" type="com.example.demo.shardingjdbc.entity.Order">
         <id column="order_id" property="orderId" jdbcType="BIGINT"/>
         <result column="user_id" property="userId" jdbcType="INTEGER"/>
     </resultMap>
 
     <insert id="insert" useGeneratedKeys="true" keyProperty="orderId">
-        insert into t_order (user_id)
-        values (#{userId})
+        INSERT INTO t_order (user_id)
+        VALUES (#{userId})
     </insert>
     <select id="selectAll" resultMap="BaseResultMap">
-        SELECT * FROM  t_order order by order_id DESC
+        SELECT * FROM  t_order ORDER BY order_id DESC
+    </select>
+
+    <select id="queryPageByCondition" resultMap="BaseResultMap">
+        SELECT * FROM t_order WHERE 1=1
+        <if test="userId != null">
+            and user_id LIKE CONCAT('%',#{userId},'%')
+        </if>
+        ORDER BY order_id ASC
     </select>
 
 </mapper>

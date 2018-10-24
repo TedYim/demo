@@ -1,7 +1,11 @@
 package com.example.demo;
 
-import com.example.demo.entity.Order;
-import com.example.demo.mapper.OrderMapper;
+import com.alibaba.fastjson.JSON;
+import com.example.demo.shardingjdbc.entity.Order;
+import com.example.demo.shardingjdbc.condition.OrderQueryCondition;
+import com.example.demo.shardingjdbc.mapper.OrderMapper;
+import com.example.demo.shardingjdbc.service.OrderService;
+import com.github.pagehelper.PageInfo;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +20,9 @@ public class ShardingjdbcTest {
 
     @Autowired
     private OrderMapper orderMapper;
+
+    @Autowired
+    private OrderService orderService;
 
     @Test
     public void insertTest() throws Exception {
@@ -40,6 +47,15 @@ public class ShardingjdbcTest {
         for (int i = 0; i < orders.size(); i++) {
             System.out.println("第 " + i + " 个订单 : " + orders.get(i));
         }
+    }
+
+    @Test
+    public void selectPage() throws Exception {
+        OrderQueryCondition condition = new OrderQueryCondition();
+        condition.setUserId(1);
+        //condition.setPageNum();
+        PageInfo<Order> pageInfo = orderService.queryByPage(condition);
+        System.err.println(JSON.toJSONString(pageInfo));
     }
 
 }

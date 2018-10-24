@@ -20,9 +20,9 @@ import java.util.concurrent.TimeUnit;
 @EnableAspectJAutoProxy(proxyTargetClass = true, exposeProxy = true)
 @EnableTransactionManagement
 @ComponentScan(basePackages = {"com.example.demo"})
-@MapperScan(basePackages = "com.example.demo.mapper")
+@MapperScan(basePackages = "com.example.demo.*.mapper")
 @Import(value = {ServerConf.class})
-@ImportResource(locations = {"classpath:spring/spring-threadpool.xml"})
+//@ImportResource(locations = {"classpath:spring/spring-threadpool.xml"})
 @SpringBootApplication
 public class Application {
 

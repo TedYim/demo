@@ -1,4 +1,4 @@
-package com.example.demo.shardingjdbc;
+package com.example.demo.shardingjdbc.sharding;
 
 import com.alibaba.fastjson.JSON;
 import io.shardingjdbc.core.api.algorithm.sharding.PreciseShardingValue;

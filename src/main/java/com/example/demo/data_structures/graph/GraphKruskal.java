@@ -1,4 +1,4 @@
-package com.example.demo.graph;
+package com.example.demo.data_structures.graph;
 
 public class GraphKruskal {
     private Edge[] edges;

@@ -200,7 +200,11 @@
             <artifactId>aspectjweaver</artifactId>
         </dependency>
 
-
+        <dependency>
+            <groupId>org.apache.rocketmq</groupId>
+            <artifactId>rocketmq-client</artifactId>
+            <version>4.3.0</version>
+        </dependency>
 
 
         <!--大数据-->
@@ -838,7 +842,7 @@
     </profiles>
 
 
-    <!-- 设定插件仓库, 如有Nexus私服, 取消注释并指向正确的服务器地址. -->
+    <!-- 设定插件仓库, 如有Nexus私服, 取消注释并指向正确的服务器地址.
     <repositories>
         <repository>
             <id>nexus</id>
@@ -865,5 +869,5 @@
             </snapshots>
         </pluginRepository>
     </pluginRepositories>
-
+-->
 </project>

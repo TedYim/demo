@@ -1,7 +1,7 @@
 package com.example.demo.configuration;
 
 import com.alibaba.druid.pool.DruidDataSource;
-import com.example.demo.shardingjdbc.MyPreciseShardingAlgorithm;
+import com.example.demo.shardingjdbc.sharding.MyPreciseShardingAlgorithm;
 import com.github.pagehelper.PageHelper;
 import io.shardingjdbc.core.api.ShardingDataSourceFactory;
 import io.shardingjdbc.core.api.config.ShardingRuleConfiguration;
@@ -106,7 +106,7 @@ public class ShardingjdbcConf {
         sqlSessionFactoryBean.setDataSource(getShardingDataSource());
         PathMatchingResourcePatternResolver resolver = new PathMatchingResourcePatternResolver();
         sqlSessionFactoryBean.setMapperLocations(resolver.getResources("classpath:/mapper/*.xml"));
-
+        sqlSessionFactoryBean.setConfigLocation(resolver.getResource("classpath:/mybatis/mybatis-config.xml"));
         sqlSessionFactoryBean.setPlugins(getInterceptor());
         return sqlSessionFactoryBean.getObject();
     }

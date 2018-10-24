@@ -1,7 +1,6 @@
 package com.example.demo;
 
 
-import com.example.demo.entity.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.connection.RedisConnection;
 import org.springframework.data.redis.connection.RedisConnectionFactory;
@@ -29,8 +28,6 @@ public class TestFun {
     }
 
     public static void main(String[] args) {
-        System.out.println(Test.i);
-        new Test();
     }
 
 }

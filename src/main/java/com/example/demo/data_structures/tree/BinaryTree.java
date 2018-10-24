@@ -1,4 +1,4 @@
-package com.example.demo.tree;
+package com.example.demo.data_structures.tree;
 
 public class BinaryTree {
 
