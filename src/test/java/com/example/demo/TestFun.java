@@ -28,6 +28,9 @@ public class TestFun {
     }
 
     public static void main(String[] args) {
+        String s = "KR27C002";
+        System.out.println(s.substring(0,4));
+        System.out.println(s.substring(4));
     }
 
 }
