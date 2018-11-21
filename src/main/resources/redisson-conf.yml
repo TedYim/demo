@@ -7,15 +7,15 @@ singleServerConfig:
   retryInterval: 1500
   reconnectionTimeout: 3000
   failedAttempts: 3
-  password: efcf0a3f902f4fce.m.cnbja.kvstore.aliyuncs.com:Topscore2016
+  password:
   subscriptionsPerConnection: 5
   clientName: null
-  address: "redis://r-2ze71e54b6bedc24.redis.rds.aliyuncs.com:6379"
+  address: "redis://localhost:6379"
   subscriptionConnectionMinimumIdleSize: 1
   subscriptionConnectionPoolSize: 50
   connectionMinimumIdleSize: 10
   connectionPoolSize: 64
-  database: 13
+  database: 1
   dnsMonitoring: false
   dnsMonitoringInterval: 5000
 threads: 0

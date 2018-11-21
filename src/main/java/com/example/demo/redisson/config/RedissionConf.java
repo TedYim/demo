@@ -1,4 +1,4 @@
-package com.example.demo.configuration;
+package com.example.demo.redisson.config;
 
 import org.redisson.Redisson;
 import org.redisson.api.RedissonClient;
@@ -15,9 +15,6 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
-/**
- * Created by Ted on 2018/6/23.
- */
 @Configuration
 public class RedissionConf {
 
