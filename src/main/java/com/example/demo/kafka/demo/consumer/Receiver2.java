@@ -20,7 +20,7 @@ public class Receiver2 {
      * 通过制定containerFactory来指定对应的groupid来进行广播消费
      * @param payload
      */
-    @KafkaListener(topics = "${kafka.topic.helloworld}", containerFactory = "kafkaListenerContainerFactory2")
+    //@KafkaListener(topics = "${kafka.topic.helloworld}", containerFactory = "kafkaListenerContainerFactory2")
     public void receive2(String payload) {
         LOGGER.info("接收到的数据 , group = 2'", payload);
         //latch.countDown();

@@ -9,7 +9,7 @@ import org.springframework.kafka.annotation.KafkaListener;
  */
 public class Group2Listener {
 
-    @KafkaListener(topics = {"taskCmd"})
+    //@KafkaListener(topics = {"taskCmd"})
     public void taskCmd(ConsumerRecord<?, ?> record) {
         System.out.println("  KafkaConsumer ---------->>>>>>>>:" + JSONUtils.toJSONString(record));
         Object message = record.value();
@@ -19,7 +19,7 @@ public class Group2Listener {
         System.out.println(record);
     }
 
-    @KafkaListener(topics = {"task"})
+    //@KafkaListener(topics = {"task"})
     public void task(ConsumerRecord<?, ?> record) {
         System.out.println("这是group2 topic task KafkaConsumer ---------->>>>>>>>:" + JSONUtils.toJSONString(record));
         Object message = record.value();
@@ -29,7 +29,7 @@ public class Group2Listener {
         System.out.println(record);
     }
 
-    @KafkaListener(topics = {"task1"}, group = "group2")
+    //@KafkaListener(topics = {"task1"}, group = "group2")
     public void task1(ConsumerRecord<?, ?> record) {
         System.out.println("这是group2" + " task1 的消费者");
         System.out.println("这是group2 topic task1 KafkaConsumer ---------->>>>>>>>:" + JSONUtils.toJSONString(record));
@@ -40,7 +40,7 @@ public class Group2Listener {
         System.out.println(record);
     }
 
-    @KafkaListener(topics = {"gift"}, group = "group2")
+    //@KafkaListener(topics = {"gift"}, group = "group2")
     public void gift(ConsumerRecord<String, String> record) {
 
         String key = record.key();

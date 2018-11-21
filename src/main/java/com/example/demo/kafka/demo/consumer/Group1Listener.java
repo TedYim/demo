@@ -11,7 +11,7 @@ import java.util.Optional;
  */
 public class Group1Listener {
 
-    @KafkaListener(topics = {"test-topic"})
+    //@KafkaListener(topics = {"test-topic"})
     public void listen(ConsumerRecord<?, ?> record) {
         Optional<?> kafkaMessage = Optional.ofNullable(record.value());
         if (kafkaMessage.isPresent()) {
@@ -20,7 +20,7 @@ public class Group1Listener {
         }
     }
 
-    @KafkaListener(topics = {"task1"}, group = "group1")
+   // @KafkaListener(topics = {"task1"}, group = "group1")
     public void task1(ConsumerRecord<?, ?> record) {
         System.out.println("这是" + " task1 的消费者");
         System.out.println("这是group1 topic task1 KafkaConsumer ---------->>>>>>>>:" + JSONUtils.toJSONString(record));
@@ -32,7 +32,7 @@ public class Group1Listener {
     }
 
 
-    @KafkaListener(topics = {"gift"}, group = "group1")
+    //@KafkaListener(topics = {"gift"}, group = "group1")
     public void gift(ConsumerRecord<String, String> record) {
 
         String key = record.key();

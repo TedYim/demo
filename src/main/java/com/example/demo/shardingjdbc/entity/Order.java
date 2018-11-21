@@ -7,4 +7,6 @@ public class Order {
 
     private Long orderId;
     private Integer userId;
+
+
 }

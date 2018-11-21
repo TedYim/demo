@@ -15,7 +15,7 @@ public class Receiver {
     //}
     private int i1 = 0;
 
-    @KafkaListener(topics = "${kafka.topic.helloworld}", containerFactory = "kafkaListenerContainerFactory1")
+    //@KafkaListener(topics = "${kafka.topic.helloworld}", containerFactory = "kafkaListenerContainerFactory1")
     public void receive(String payload) {
         LOGGER.info("接收到的数据 , group = 1 [ {} ]", payload);
         //latch.countDown();
