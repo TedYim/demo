@@ -8,6 +8,7 @@ import io.undertow.servlet.api.TransportGuaranteeType;
 import io.undertow.servlet.api.WebResourceCollection;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.context.embedded.undertow.UndertowEmbeddedServletContainerFactory;
+import org.springframework.boot.web.servlet.ServletListenerRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -61,4 +62,17 @@ public class ServerConf {
         });*/
         return factory;
     }
+
+    /**
+     * java web应用，做系统的初始化，一般在哪里做呢？
+     * ServletContextListener里面做，listener，会跟着整个web应用的启动，就初始化，类似于线程池初始化的构建
+     * @return
+     */
+    @Bean
+    public ServletListenerRegistrationBean<InitListener> servletListenerRegistrationBean() {
+        ServletListenerRegistrationBean<InitListener> servletListenerRegistrationBean = new ServletListenerRegistrationBean<>();
+        servletListenerRegistrationBean.setListener(new InitListener());
+        return servletListenerRegistrationBean;
+    }
+
 }

@@ -2,6 +2,7 @@ package com.example.demo.redisson.queue;
 
 
 import lombok.extern.slf4j.Slf4j;
+import org.redisson.api.RAtomicLong;
 import org.redisson.api.RBlockingQueue;
 import org.redisson.api.RedissonClient;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,12 +14,11 @@ import org.springframework.stereotype.Component;
 @Component
 public class RedissionProducer implements Runnable {
 
-
-    @Autowired
     private RedissonClient redisson;
 
-
-    public RedissionProducer() {
+    @Autowired
+    public RedissionProducer(RedissonClient redisson) {
+        this.redisson = redisson;
         new Thread(this).start();
     }
 

@@ -1,10 +1,12 @@
 package com.example.demo;
 
+import com.example.demo.redisson.queue.Message;
 import com.example.demo.util.DateUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.redisson.RedissonRedLock;
+import org.redisson.api.RBlockingQueue;
 import org.redisson.api.RLock;
 import org.redisson.api.RedissonClient;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -186,6 +188,17 @@ public class RedissionTests {
             }
         }
 
+    }
+
+
+
+    @Test
+    public void testRedissonQueue() throws Exception {
+        log.warn("开始往Redission中生产数据");
+        RBlockingQueue<Message> queue = redisson.getBlockingQueue("msgQueue");
+        for (long i = 0; i < 10; i++) {
+            queue.offer(new Message(i, "这条消息" + i));
+        }
     }
 
 

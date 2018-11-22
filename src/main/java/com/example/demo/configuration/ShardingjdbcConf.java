@@ -27,10 +27,10 @@ import java.util.concurrent.ConcurrentHashMap;
 /**
  * Shardingjdbc的配置文件
  */
-@Configuration
+//@Configuration
 public class ShardingjdbcConf {
 
-    @Bean
+    //@Bean
     TableRuleConfiguration getOrderTableRuleConfiguration() {
         TableRuleConfiguration orderTableRuleConfig = new TableRuleConfiguration();
         //配置逻辑表名，并非数据库中真实存在的表名，而是sql中使用的那个，不受分片策略而改变.
@@ -49,7 +49,7 @@ public class ShardingjdbcConf {
         return orderTableRuleConfig;
     }
 
-    @Bean
+    //@Bean
     TableRuleConfiguration getOrderItemTableRuleConfiguration() {
         TableRuleConfiguration orderItemTableRuleConfig = new TableRuleConfiguration();
         orderItemTableRuleConfig.setLogicTable("t_order_item");
@@ -84,7 +84,7 @@ public class ShardingjdbcConf {
      * @return
      * @throws SQLException
      */
-    @Bean
+    //@Bean
     DataSource getShardingDataSource() throws SQLException {
         ShardingRuleConfiguration shardingRuleConfig = new ShardingRuleConfiguration();
         shardingRuleConfig.getTableRuleConfigs().add(getOrderTableRuleConfiguration());
@@ -100,7 +100,7 @@ public class ShardingjdbcConf {
         return ShardingDataSourceFactory.createDataSource(createDataSourceMap(), shardingRuleConfig, new ConcurrentHashMap<>(), new Properties());
     }
 
-    @Bean
+    //@Bean
     public SqlSessionFactory sqlSessionFactoryBean() throws Exception {
         SqlSessionFactoryBean sqlSessionFactoryBean = new SqlSessionFactoryBean();
         sqlSessionFactoryBean.setDataSource(getShardingDataSource());
@@ -111,7 +111,7 @@ public class ShardingjdbcConf {
         return sqlSessionFactoryBean.getObject();
     }
 
-    @Bean
+    //@Bean
     public Interceptor[] getInterceptor() {
         Interceptor interceptor = new PageHelper();
         Properties props = new Properties();
@@ -126,7 +126,7 @@ public class ShardingjdbcConf {
         return interceptors;
     }
 
-    @Bean
+    //@Bean
     public PlatformTransactionManager transactionManager() throws SQLException {
         return new DataSourceTransactionManager(getShardingDataSource());
     }
