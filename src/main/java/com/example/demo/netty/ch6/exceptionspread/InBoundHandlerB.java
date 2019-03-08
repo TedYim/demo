@@ -1,6 +1,6 @@
 package com.example.demo.netty.ch6.exceptionspread;
 
-import com.imooc.netty.ch6.BusinessException;
+import com.example.demo.netty.ch6.BusinessException;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.ChannelInboundHandlerAdapter;
 

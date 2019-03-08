@@ -6,9 +6,6 @@ import org.springframework.boot.web.servlet.ServletRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-/**
- * Created by Ted on 2018/11/21.
- */
 @Configuration
 public class HystrixConfig {
 

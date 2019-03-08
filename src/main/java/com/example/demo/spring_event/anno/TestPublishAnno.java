@@ -6,9 +6,6 @@ import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.context.ApplicationEventPublisherAware;
 import org.springframework.stereotype.Component;
 
-/**
- * Created by Ted on 2018/11/21.
- */
 @Component
 public class TestPublishAnno {
 

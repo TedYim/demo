@@ -6,7 +6,7 @@ import org.springframework.context.ApplicationEventPublisherAware;
 import org.springframework.stereotype.Component;
 
 /**
- * Created by Ted on 2018/11/21.
+ * 发布事件(事件触发)
  */
 @Component
 public class TestPublishCode implements ApplicationEventPublisherAware {

@@ -7,8 +7,9 @@ import io.netty.channel.EventLoopGroup;
 import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.nio.NioServerSocketChannel;
 
-import static com.imooc.netty.ch12.connection.Constant.BEGIN_PORT;
-import static com.imooc.netty.ch12.connection.Constant.N_PORT;
+import static com.example.demo.netty.ch12.connection.Constant.BEGIN_PORT;
+import static com.example.demo.netty.ch12.connection.Constant.N_PORT;
+
 
 /**
  * @author 闪电侠
