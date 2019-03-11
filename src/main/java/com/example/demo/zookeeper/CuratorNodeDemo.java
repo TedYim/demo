@@ -2,13 +2,19 @@ package com.example.demo.zookeeper;
 
 import org.apache.curator.framework.CuratorFramework;
 import org.apache.curator.framework.CuratorFrameworkFactory;
+import org.apache.curator.framework.recipes.locks.ChildReaper;
 import org.apache.curator.framework.recipes.locks.InterProcessMutex;
+import org.apache.curator.framework.recipes.locks.Reaper;
 import org.apache.curator.framework.recipes.nodes.PersistentNode;
 import org.apache.curator.framework.state.ConnectionState;
 import org.apache.curator.framework.state.ConnectionStateListener;
 import org.apache.curator.retry.ExponentialBackoffRetry;
+import org.apache.curator.utils.CloseableUtils;
 import org.apache.zookeeper.CreateMode;
+import org.apache.zookeeper.data.Stat;
 
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -18,9 +24,9 @@ public class CuratorNodeDemo {
 
     /**
      * 测试Curator版本与分布式锁建立的节点类型的关系
-     * Container Nodes – 容器节点 zookeeper在3.6版本后加入容器节点的概念。
+     * Container Nodes – 容器节点 zookeeper在3.5版本后加入容器节点的概念。
      * 容器节点是有特别目的的节点，当作为leader 锁是很有用。
-     * 但是在3.6版本之前Curator使用Sequence Nodes来代替容器节点
+     * 但是在3.5版本之前Curator使用Sequence Nodes来代替容器节点
      */
     public static void ephemeralNodesVersionTest() throws Exception {
         ExponentialBackoffRetry ExponentialBackoffRetry = new ExponentialBackoffRetry(1000, 3);
@@ -31,10 +37,55 @@ public class CuratorNodeDemo {
                 3000,
                 ExponentialBackoffRetry);
         curatorFramework.start();
-        InterProcessMutex lock = new InterProcessMutex(curatorFramework, "/yzytest/test1");
-        lock.acquire();
+        String parentPath = "/lock/hana/order/";
+        String lockPath = "SO123456789";
 
-        Thread.sleep(Integer.MAX_VALUE);
+
+        ExecutorService executorService = Executors.newCachedThreadPool();
+        executorService.execute(new Runnable() {
+            @Override
+            public void run() {
+                InterProcessMutex lock = new InterProcessMutex(curatorFramework, parentPath + lockPath);
+                try {
+                    lock.acquire();
+                    TimeUnit.SECONDS.sleep(60);
+                    lock.release();
+                    System.err.println("===============================锁已经释放================================");
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+
+            }
+        });
+
+        /**
+         * 测试Reaper
+         * reaper.start();后台启动一个线下不停的扫描,该方法已经被废弃,just test
+         */
+        executorService.execute(new Runnable() {
+            @Override
+            public void run() {
+                ChildReaper reaper = new ChildReaper(curatorFramework, "/lock/hana/order", Reaper.Mode.REAP_UNTIL_DELETE, 1);
+                try {
+                    System.err.println("===============================ChildReaper 开始================================");
+                    reaper.start();
+                    while (true) {
+                        Stat stat = curatorFramework.checkExists().forPath("/lock/hana/order");
+                        if (stat.getNumChildren() == 0) {
+                            break;
+                        }
+                        TimeUnit.SECONDS.sleep(5);
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
+                } finally {
+                    System.err.println("===============================ChildReaper 关闭================================");
+                    CloseableUtils.closeQuietly(reaper);
+                }
+            }
+        });
+
+
     }
 
 
@@ -44,12 +95,11 @@ public class CuratorNodeDemo {
      * 即使不是sequential-ephemeral,也可能服务器创建成功但是客户端由于某些原因不知道创建的节点。
      * Curator对这些可能无人看管的节点提供了保护机制。 这些节点创建时会加上一个GUID。 如果节点创建失败正常的重试机制会发生。 重试时， 首先搜索父path, 根据GUID搜索节点，如果找到这样的节点， 则认为这些节点是第一次尝试创建时创建成功但丢失的节点，然后返回给调用者。
      * 注意：节点必须调用start方法启动。 不用时调用close方法。PersistentEphemeralNode 内部自己处理错误状态。
-     *
+     * <p>
      * Ephemeral Nodes – 临时结点 Zookeeper还有一个临时节点的概念。
      * 这些节点在创建这些节点的session的活动周期中存货。当session结束，这些节点也被删除了。
      * 因此。临时节点不允许有子节点。
      * 如果创建时有诸如/example/node12此类的路径,那么父节点以永久节点的型式创建
-     *
      */
     public static void ephemeralNodesCreateTest() throws Exception {
         final String PATH = "/example2/ephemeralNode";
@@ -81,8 +131,21 @@ public class CuratorNodeDemo {
     }
 
 
-    public static void main(String[] args) throws Exception {
-        CuratorNodeDemo.ephemeralNodesCreateTest();
+    /**
+     * 测试Reaper
+     *
+     * @throws Exception
+     */
+    public static void ReaperTest() throws Exception {
+
     }
+
+
+    public static void main(String[] args) throws Exception {
+        CuratorNodeDemo.ephemeralNodesVersionTest();
+
+        Thread.sleep(Integer.MAX_VALUE);
+    }
+
 
 }
