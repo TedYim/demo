@@ -8,11 +8,6 @@ public class FastSort {
         int start = 0;
         int end = a.length - 1;
         quickSort(a, start, end);
-        System.out.println("Hello World");
-        int[] a = {12, 20, 5, 16, 15, 1, 30, 45, 23, 9};
-        int start = 0;
-        int end = a.length - 1;
-        sort2(a, start, end);
         for (int i = 0; i < a.length; i++) {
             System.out.println(a[i]);
         }
@@ -55,13 +50,6 @@ public class FastSort {
         quickSort(arr, j + 1, high);
     }
 
-
-}
-        for (char i = 0; i < 256; ++i) {
-            System.out.println(i);
-        }
-
-    }
 
     public static void sort(int[] a, int low, int high) {
         int start = low;
