@@ -1,9 +1,5 @@
 package com.example.demo.sort_algorithm;
 
-import com.google.common.collect.Lists;
-
-import java.util.ArrayList;
-import java.util.LinkedList;
 import java.util.Random;
 
 public class MergeSort {
