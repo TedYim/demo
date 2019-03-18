@@ -7,7 +7,6 @@ public class BinaryInsertion {
 
     public static void sort(int intArrays[]) {
 
-
         for (int i = 1; i < intArrays.length; i++) {
             int sortEle = intArrays[i];//待排序元素
             int midIndex = i / 2;//查找之前信息的中点下标
