@@ -13,6 +13,7 @@ import org.apache.curator.utils.CloseableUtils;
 import org.apache.zookeeper.CreateMode;
 import org.apache.zookeeper.data.Stat;
 
+import java.sql.Time;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
@@ -42,48 +43,53 @@ public class CuratorNodeDemo {
 
 
         ExecutorService executorService = Executors.newCachedThreadPool();
-        executorService.execute(new Runnable() {
-            @Override
-            public void run() {
-                InterProcessMutex lock = new InterProcessMutex(curatorFramework, parentPath + lockPath);
-                try {
-                    lock.acquire();
-                    TimeUnit.SECONDS.sleep(60);
-                    lock.release();
-                    System.err.println("===============================锁已经释放================================");
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-
-            }
-        });
 
         /**
          * 测试Reaper
-         * reaper.start();后台启动一个线下不停的扫描,该方法已经被废弃,just test
          */
-        executorService.execute(new Runnable() {
-            @Override
-            public void run() {
-                ChildReaper reaper = new ChildReaper(curatorFramework, "/lock/hana/order", Reaper.Mode.REAP_UNTIL_DELETE, 1);
-                try {
-                    System.err.println("===============================ChildReaper 开始================================");
-                    reaper.start();
-                    while (true) {
-                        Stat stat = curatorFramework.checkExists().forPath("/lock/hana/order");
-                        if (stat.getNumChildren() == 0) {
-                            break;
-                        }
-                        TimeUnit.SECONDS.sleep(5);
+        for (int i = 0; i < 10; i++) {
+            int finalI = i;
+            executorService.execute(new Runnable() {
+                @Override
+                public void run() {
+                    MyInterProcessMutex lock = new MyInterProcessMutex(curatorFramework, parentPath + lockPath + finalI);
+                    //InterProcessMutex lock = new InterProcessMutex(curatorFramework, parentPath + lockPath + finalI);
+
+                    try {
+                        lock.acquire();
+
+                        TimeUnit.SECONDS.sleep(10);
+
+                        lock.release();
+                    } catch (Exception e) {
+                        e.printStackTrace();
                     }
-                } catch (Exception e) {
-                    e.printStackTrace();
-                } finally {
-                    System.err.println("===============================ChildReaper 关闭================================");
-                    CloseableUtils.closeQuietly(reaper);
                 }
-            }
-        });
+            });
+        }
+
+        TimeUnit.SECONDS.sleep(60);
+
+        for (int i = 0; i < 10; i++) {
+            int finalI = i;
+            executorService.execute(new Runnable() {
+                @Override
+                public void run() {
+                    MyInterProcessMutex lock = new MyInterProcessMutex(curatorFramework, parentPath + lockPath + finalI);
+                    //InterProcessMutex lock = new InterProcessMutex(curatorFramework, parentPath + lockPath + finalI);
+
+                    try {
+                        lock.acquire();
+
+                        TimeUnit.SECONDS.sleep(10);
+
+                        lock.release();
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                }
+            });
+        }
 
 
     }
