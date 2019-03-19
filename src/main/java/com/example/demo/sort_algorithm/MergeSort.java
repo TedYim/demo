@@ -16,7 +16,7 @@ public class MergeSort {
     public static void mergeArray(int[] array, int low, int mid, int high) {
         int[] temp = new int[mid - low + 1];      //创建临时数组,只需要创建前一半即可
         for (int i = 0, j = low; i < temp.length; i++, j++) {
-            temp[i] = array[j];          //对临时数组进行赋值
+            temp[i] = array[j];          //对临时数组进行赋值 , 赋值前半个数组
         }
         int i = 0, j = mid + 1, m = low;
         while (i < temp.length && j <= high) {     //将两个有序数组归并
