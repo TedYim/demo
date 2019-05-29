@@ -9,7 +9,7 @@ import java.util.TreeMap;
 /**
  * 一致性Hash算法
  *
- * @param <T> 节点类型
+ * @param <T> 节点类型(可以只是String类型的IP,也可以是封装成节点类型的类)
  */
 public class ConsistentHash<T> {
     /**
@@ -32,13 +32,9 @@ public class ConsistentHash<T> {
      */
     public ConsistentHash(int numberOfReplicas, Collection<T> nodes) {
         this.numberOfReplicas = numberOfReplicas;
-        this.hashFunc = new HashFunc() {
-
-            @Override
-            public Long hash(Object key) {
+        this.hashFunc = key -> {
 //                return fnv1HashingAlg(key.toString());
-                return md5HashingAlg(key.toString());//使用md5哈希算法
-            }
+            return md5HashingAlg(key.toString());//使用md5哈希算法
         };
         //初始化节点
         for (T node : nodes) {

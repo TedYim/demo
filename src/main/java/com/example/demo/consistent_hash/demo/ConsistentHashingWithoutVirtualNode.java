@@ -31,7 +31,7 @@ public class ConsistentHashingWithoutVirtualNode {
         for (int i = 0; i < servers.length; i++) {
             int hash = getHash(servers[i]);//FNV1_32_HASH算法计算服务器的Hash值
             System.out.println("[" + servers[i] + "]加入集合中, 其Hash值为" + hash);
-            sortedMap.put(hash, servers[i]);
+            sortedMap.put(hash, servers[i]);//将服务器放入TreeMap中
         }
         System.out.println();
     }

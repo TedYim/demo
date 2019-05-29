@@ -1,5 +1,8 @@
 package com.example.demo.sort_algorithm;
 
+import java.io.PrintStream;
+import java.util.Scanner;
+
 public class BfprtSearch {
     // O(N)
     private static int getMinKthByBFPRT(int[] arr, int K) {
@@ -96,9 +99,29 @@ public class BfprtSearch {
         System.out.println();
     }
 
-    public static void main(String[] args) {
+    /*public static void main(String[] args) {
         int[] nu = {3, 90, 56, 20, 20, 20, 20, 46, 72};
         //3 20 20 20 20 46 56 72 90
         System.out.println(getMinKthByBFPRT(nu, 8));
+    }*/
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        String string = scanner.nextLine().trim();
+        scanner.close();
+        int max_length = 0;
+        String max_str = "";
+        while (string.length() > 0) {
+            String first = string.substring(0, 1);
+            int length = string.length();
+            string = string.replaceAll(first, "");
+            if (max_length < length - string.length()) {
+                max_length = length - string.length();
+                max_str = first;
+            }
+        }
+        PrintStream out = System.out;
+        System.out.println(max_str.toCharArray()[0]);
     }
+
 }
