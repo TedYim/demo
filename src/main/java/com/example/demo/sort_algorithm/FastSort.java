@@ -1,5 +1,10 @@
 package com.example.demo.sort_algorithm;
 
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Random;
+
 public class FastSort {
 
     public static void main(String[] args) {
@@ -7,11 +12,10 @@ public class FastSort {
         int[] a = {12, 20, 5, 16, 15, 1, 30, 45, 23, 9};
         int start = 0;
         int end = a.length - 1;
-        quickSort(a, start, end);
+        sort4(a, start, end);
         for (int i = 0; i < a.length; i++) {
             System.out.println(a[i]);
         }
-
     }
 
     public static void quickSort(int[] arr, int low, int high) {
@@ -106,9 +110,62 @@ public class FastSort {
 
     }
 
+
     private static void swap(int[] a, int low, int high) {
         int tmp = a[low];
         a[low] = a[high];
         a[high] = tmp;
     }
+
+
+    private static void sort3(int[] arr, int start, int end) {
+        int low = start;//用来递归
+        int high = end;//用来递归
+        int mark = start;
+
+        if (start > end) {
+            return;
+        }
+
+        while (start < end) {
+            while (arr[start] < arr[mark]) {
+                start++;
+            }
+            while (arr[end] > arr[mark]) {
+                end--;
+            }
+            swap(arr, start, end);
+        }
+        swap(arr, mark, low);
+        sort3(arr, start + 1, high);
+        sort3(arr, low, end - 1);
+
+    }
+
+
+    public static void sort4(int[] arr, int begin, int end) {
+        int start = begin;
+        int stop = end;
+        int mark = begin;
+
+        if (begin > end)
+            return;
+
+        while (begin < end) {
+            while (arr[mark] > arr[begin])
+                begin++;
+
+            while (arr[mark] < arr[end])
+                end--;
+
+            swap(arr, begin, end);
+        }
+        swap(arr, begin, end);
+        sort4(arr, start, begin - 1);
+        sort4(arr, end + 1, stop);
+    }
+
+
 }
+
+

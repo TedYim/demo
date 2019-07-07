@@ -15,7 +15,7 @@ import java.util.concurrent.TimeUnit;
 @SuppressWarnings("deprecation")
 public class MyInterProcessMutex extends InterProcessMutex {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(MyInterProcessMutex.class);
+    private final Logger log = LoggerFactory.getLogger(getClass());
 
     private Reaper reaper;
 
@@ -23,7 +23,7 @@ public class MyInterProcessMutex extends InterProcessMutex {
 
     private String path;
 
-    private static final Integer DEFAULT_REAPING_THRESHOLD_MS = 30000;
+    private static final int DEFAULT_REAPING_THRESHOLD_MS = 30000;
 
 
     public MyInterProcessMutex(CuratorFramework client, String path) {
@@ -31,15 +31,15 @@ public class MyInterProcessMutex extends InterProcessMutex {
     }
 
 
-    public MyInterProcessMutex(CuratorFramework client, String path, Integer reapingThresholdMs) {
+    public MyInterProcessMutex(CuratorFramework client, String path, int reapingThresholdMs) {
         super(client, path);
         this.client = client;
         this.path = path;
         this.reaper = new Reaper(client, MyInterProcessMutexThreadPool.getInstance(),
-                (reapingThresholdMs != null && reapingThresholdMs != 0) ? reapingThresholdMs : DEFAULT_REAPING_THRESHOLD_MS, (String) null);
+                reapingThresholdMs != 0 ? reapingThresholdMs : DEFAULT_REAPING_THRESHOLD_MS, (String) null);
         try {
             reaper.start();
-            LOGGER.debug("reaper start ...");
+            log.debug("reaper start ...");
         } catch (Exception ignored) {
         }
     }
@@ -49,7 +49,7 @@ public class MyInterProcessMutex extends InterProcessMutex {
     public void acquire() throws Exception {
         super.acquire();
         this.reaper.addPath(this.path, Reaper.Mode.REAP_UNTIL_DELETE);
-        LOGGER.debug("reaper add path : [ {} ]", this.path);
+        log.debug("reaper add path : [ {} ]", this.path);
     }
 
 
@@ -61,9 +61,9 @@ public class MyInterProcessMutex extends InterProcessMutex {
             Stat stat = client.checkExists().forPath(path);
             if (stat == null) {
                 reaper.removePath(path);
-                LOGGER.debug("reaper remove path : [ {} ]", this.path);
+                log.debug("reaper remove path : [ {} ]", this.path);
                 CloseableUtils.closeQuietly(reaper);
-                LOGGER.debug("reaper close ...");
+                log.debug("reaper close ...");
                 break;
             }
         }

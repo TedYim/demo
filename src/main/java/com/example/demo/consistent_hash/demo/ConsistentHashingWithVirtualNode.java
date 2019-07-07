@@ -24,10 +24,10 @@ public class ConsistentHashingWithVirtualNode {
      * 虚拟节点，key表示虚拟节点的hash值，value表示虚拟节点的名称
      */
     private static SortedMap<Integer, String> virtualNodes =
-            new TreeMap<Integer, String>();
+            new TreeMap<>();
 
     /**
-     * 虚拟节点的数目，这里写死，为了演示需要，一个真实结点对应5个虚拟节点
+     * 虚拟节点的数目，可以通过构造器传进来，这里写死，为了演示需要，一个真实结点对应5个虚拟节点
      */
     private static final int VIRTUAL_NODES = 5;
 
@@ -74,14 +74,19 @@ public class ConsistentHashingWithVirtualNode {
     private static String getServer(String node) {
         // 得到带路由的结点的Hash值
         int hash = getHash(node);
-        // 得到大于该Hash值的所有Map
-        SortedMap<Integer, String> subMap =
-                virtualNodes.tailMap(hash);
-        // 第一个Key就是顺时针过去离node最近的那个结点
-        Integer i = subMap.firstKey();
-        // 返回对应的虚拟节点名称，这里字符串稍微截取一下
-        String virtualNode = subMap.get(i);
-        return virtualNode.substring(0, virtualNode.indexOf("&&"));
+        if (!virtualNodes.containsKey(hash)) {
+            // 得到大于该Hash值的所有Map
+            SortedMap<Integer, String> subMap = virtualNodes.tailMap(hash);
+            //这里可能有BUG 如果hash比已有的主机节点还大的话 , 那么subMap就是空 , 那么就要取virtualNodes的第一个node
+            Integer i = subMap.isEmpty() ? virtualNodes.firstKey() : subMap.firstKey();
+            // 第一个Key就是顺时针过去离node最近的那个结点
+            // 返回对应的虚拟节点名称，这里字符串稍微截取一下
+            String virtualNode = subMap.get(i);
+            return virtualNode.substring(0, virtualNode.indexOf("&&"));
+        } else {
+            String virtualNode = virtualNodes.get(hash);
+            return virtualNode.substring(0, virtualNode.indexOf("&&"));
+        }
     }
 
     public static void main(String[] args) {
