@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+    <!-- 设置缓存和延迟加载等等重要的运行时的行为方式 -->
+    <settings>
+        <!-- cache全局开关：默认是true，如果它配成false，其余各个Mapper XML文件配成支持cache也没用 -->
+        <setting name="cacheEnabled" value="false"/>
+        <!--  是否开启延迟加载 -->
+        <setting name="lazyLoadingEnabled" value="false"/>
+        <!-- 设置超时时间，它决定驱动等待一个数据库响应的时间  -->
+        <setting name="defaultStatementTimeout" value="25000"/>
+        <!-- 打印查询语句 -->
+        <setting name="logImpl" value="STDOUT_LOGGING"/>
+    </settings>
+
+<!--    <plugins>
+        <plugin interceptor="com.example.demo.mybatis.page.PagingPlugin">
+            &lt;!&ndash;默认第1页&ndash;&gt;
+            <property name="default.page" value="1"/>
+            &lt;!&ndash;默认每页20条&ndash;&gt;
+            <property name="default.pageSize" value="20"/>
+            &lt;!&ndash;默认不启用分页插件&ndash;&gt;
+            <property name="default.useFlag" value="false"/>
+            &lt;!&ndash;默认不检查页码&ndash;&gt;
+            <property name="default.checkFlag" value="false"/>
+        </plugin>
+    </plugins>-->
+<!--    <mappers>
+        <package name="com.topscore.uke.mapper"/>
+    </mappers>-->
+</configuration>
