@@ -1,4 +1,4 @@
-/target
+*/target
 .gitignore
 !.mvn/wrapper/maven-wrapper.jar
 
@@ -24,3 +24,8 @@
 /dist/
 /nbdist/
 /.nb-gradle/
+spring_cloud_demo/eureka_demo/target/
+spring_cloud_demo/time_client/src/test/
+spring_cloud_demo/time_client/target/
+spring_cloud_demo/time_service/target/
+test_demo/target/

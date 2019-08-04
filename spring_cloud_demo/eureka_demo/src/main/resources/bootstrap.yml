@@ -1,33 +1,33 @@
 spring:
   application:
-    name: base-eureka-server
-  profiles:
-    active: loc
-  security:
-    user:
-      name: admin
-      password: pwd
+    name: eureka-server
+#  profiles:
+#    active: loc
+#  security:
+#    user:
+#      name: admin
+#    password: pwd
 
 server:
-  port: 9999
+  port: 8761
 
-management:
-  endpoints:
-    web:
-      exposure:
-        include: "*"
-  endpoint:
-    health:
-      show-details: ALWAYS
-
+#management:
+#  endpoints:
+#    web:
+#      exposure:
+#        include: "*"
+#  endpoint:
+#    health:
+#      show-details: ALWAYS
+#
 eureka:
-  server:
-    enableSelfPreservation: false # 关闭自我保护
-    evictionIntervalTimerInMs: 5000 #清理间隔（单位毫秒，默认是60*1000）启用主动失效
-  instance:
-    hostname: 127.0.0.1
+#  server:
+#    enableSelfPreservation: false # 关闭自我保护
+#    evictionIntervalTimerInMs: 5000 #清理间隔（单位毫秒，默认是60*1000）启用主动失效
+#  instance:
+#    hostname: 127.0.0.1
   client:
     register-with-eureka: false
     fetch-registry: false
-    serviceUrl:
-      defaultZone: http://admin:pwd@127.0.0.1:9999/eureka/
+#    serviceUrl:
+#      defaultZone: http://admin:pwd@127.0.0.1:9999/eureka/
