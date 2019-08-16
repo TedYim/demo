@@ -29,5 +29,6 @@ eureka:
   client:
     register-with-eureka: false
     fetch-registry: false
+    instanceInfoReplicationIntervalSeconds: 10
 #    serviceUrl:
 #      defaultZone: http://admin:pwd@127.0.0.1:9999/eureka/

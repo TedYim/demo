@@ -1,4 +1,4 @@
-package com.example.demo;
+package com.example.demo.spring;
 
 import com.example.demo.spring_event.code.EventDemo;
 import com.example.demo.spring_event.code.TestPublishCode;

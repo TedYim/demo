@@ -8,5 +8,13 @@ eureka:
   client:
     service-url:
       defaultZone: http://localhost:8761/eureka
+    healthcheck:
+      enabled: true # 开启客户端健康检查
+    eurekaServiceUrlPollIntervalSeconds: 5
   instance:
     instance-id: ${spring.cloud.client.ip-address}:${spring.application.name}:${server.port}
+
+time-service:
+  ribbon:
+    NFLoadBalancerPingClassName: com.netflix.loadbalancer.PingUrl
+

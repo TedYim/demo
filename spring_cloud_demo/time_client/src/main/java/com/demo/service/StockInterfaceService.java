@@ -6,16 +6,17 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
 @Service
-public class TimeService {
+public class StockInterfaceService {
 
     @Autowired
     private RestTemplate restTemplate;
 
-    @Autowired
-    private LoadBalancerClient loadBalancerClient;
-
-    public String getTime() {
-        return restTemplate.getForEntity("http://time-service/time", String.class).getBody();
+    /**
+     * http://localhost:8080/stock-interface/server/check
+     * @return
+     */
+    public Boolean getStatus() {
+        return restTemplate.getForEntity("http://STOCK-INTERFACE/stock-interface/server/check", Boolean.class).getBody();
     }
 
 }

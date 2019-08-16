@@ -13,8 +13,13 @@ public class TimeController {
     private int port;
 
 
-    @GetMapping
+    @GetMapping("/time")
     public String getTime() {
         return "The current time is " + new Date().toString() + "(answered by service running on " + port + ")";
+    }
+
+    @GetMapping("/feign")
+    public String getFeignTime() {
+        return "feign ==> The current time is " + new Date().toString() + "(answered by service running on " + port + ")";
     }
 }

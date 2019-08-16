@@ -9,6 +9,7 @@
     <modules>
         <module>dubbo_provider</module>
         <module>dubbo_consumer</module>
+        <module>dubbo_nacos</module>
     </modules>
     <packaging>pom</packaging>
 
