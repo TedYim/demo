@@ -6,7 +6,7 @@ import com.google.common.hash.Funnels;
 /**
  * 布隆过滤器
  */
-public class BloomFilterTest {
+public class GuavaBloomFilterDemo {
 
     private static final int capacity = 1000000;
     private static final int key      = 999998;

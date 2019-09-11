@@ -1,5 +1,7 @@
 package com.example.demo.system_info;
 
+import com.google.common.collect.Lists;
+
 import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -10,7 +12,8 @@ import java.util.*;
 public class SystemInfoDemo {
 
     public static void main(String[] args) {
-
+        ArrayList<String> rst = Lists.newArrayListWithCapacity(20);
+        System.out.println(rst.size());
     }
 
     //其他的一些东西,会实用到的时候的
